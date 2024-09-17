@@ -33,8 +33,10 @@ export const OutputNode = ({ id, data }) => {
       additionalContent={
         <div className="flex flex-col space-y-4 mt-4">
           <div className="flex flex-col space-y-2">
+
             <Label htmlFor={`${id}-name`}>Name:</Label>
             <Input
+
               id={`${id}-name`}
               type="text"
               value={currName}
@@ -45,6 +47,7 @@ export const OutputNode = ({ id, data }) => {
 
           <div className="flex flex-col space-y-2">
             <Label htmlFor={`${id}-type`}>Type:</Label>
+
             <Select
               value={outputType}
               onValueChange={(value) => setOutputType(value)}
@@ -53,6 +56,7 @@ export const OutputNode = ({ id, data }) => {
                 <SelectValue placeholder="Select output type" />
               </SelectTrigger>
               <SelectContent>
+                
                 <SelectItem value="Text">Text</SelectItem>
                 <SelectItem value="Image">Image</SelectItem>
               </SelectContent>

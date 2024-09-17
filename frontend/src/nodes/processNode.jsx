@@ -57,7 +57,9 @@ export const ProcessNode = ({ id, data }) => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Type A">Type A</SelectItem>
+                
                 <SelectItem value="Type B">Type B</SelectItem>
+
                 <SelectItem value="Type C">Type C</SelectItem>
               </SelectContent>
             </Select>
@@ -66,6 +68,7 @@ export const ProcessNode = ({ id, data }) => {
           <div className="flex flex-col space-y-2">
             <Label htmlFor={`${id}-description`}>Description:</Label>
             <Textarea
+
               id={`${id}-description`}
               value={description}
               onChange={(e) => setDescription(e.target.value)}

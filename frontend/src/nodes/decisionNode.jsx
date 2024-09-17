@@ -57,6 +57,7 @@ export const DecisionNode = ({ id, data }) => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Condition A">Condition A</SelectItem>
+                
                 <SelectItem value="Condition B">Condition B</SelectItem>
               </SelectContent>
             </Select>

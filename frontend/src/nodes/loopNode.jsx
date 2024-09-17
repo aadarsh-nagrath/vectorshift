@@ -20,6 +20,7 @@ export const LoopNode = ({ id, data }) => {
       type: 'source',
       position: Position.Right,
       id: `${id}-output`,
+
       style: { top: '25%' },
     },
   ];
@@ -31,8 +32,10 @@ export const LoopNode = ({ id, data }) => {
       handles={handles}
       additionalContent={
         <div className="flex flex-col space-y-4 mt-4">
+
           <div className="flex flex-col space-y-2">
             <Label htmlFor={`${id}-loopName`}>Loop Name:</Label>
+
             <Input
               id={`${id}-loopName`}
               type="text"
@@ -48,6 +51,7 @@ export const LoopNode = ({ id, data }) => {
               id={`${id}-iterations`}
               type="number"
               value={iterations}
+              
               onChange={(e) => setIterations(e.target.value)}
               placeholder="Enter number of iterations"
             />

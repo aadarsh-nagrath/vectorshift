@@ -40,14 +40,7 @@ export const TextNode = ({ id, data }) => {
         return (
           <span
             key={index}
-            style={{
-              backgroundColor: '#e0f7fa',
-              padding: '0px 0px',
-              borderRadius: '4px',
-              marginRight: '2px',
-              border: '1px solid #00acc1',
-              display: 'inline-block',
-            }}
+            className="bg-cyan-100 px-1 rounded mr-1 border border-cyan-400 inline-block"
           >
             {blockText}
           </span>
@@ -65,7 +58,6 @@ export const TextNode = ({ id, data }) => {
     }
   };
 
- 
   const handles = [
     {
       type: 'target',
@@ -97,48 +89,19 @@ export const TextNode = ({ id, data }) => {
               placeholder="Type here"
               ref={textareaRef}
               onScroll={handleScroll}
-              style={{ 
-                width: '100%', 
-                height: inputHeight,
-                resize: 'none', 
-                borderRadius: '4px',
-                overflow: 'auto',
-                fontSize: '15px',
-                lineHeight: lineHeight,
-                border: '1px solid #ccc',
-                cursor: 'none',
-                minHeight: '100px',
-                backgroundColor: 'transparent',
-                color: 'transparent',
-                caretColor: 'black',
-                position: 'absolute',
-                top: 18,
-                left: 0,
-                zIndex: 2,
-                boxSizing: 'border-box',
-                spellCheck: 'false',
-              }}
+              className="w-full resize-none rounded overflow-auto text-sm border border-gray-300 cursor-none min-h-[100px] bg-transparent text-transparent caret-black absolute top-4 left-0 z-10 box-border spell-check-none leading-${lineHeight}"
+
+              style={{ height: inputHeight }} 
             />
           </div>
 
           <div
             ref={displayRef}
-            style={{
-              border: '1px solid #ccc',
-              overflow: 'auto',
-              backgroundColor: '#fff',
-              minHeight: '100px',
-              marginTop: '10px',
-              whiteSpace: 'pre-wrap',
-              wordWrap: 'break-word',
-              position: 'relative',
-              width: '100%',
-              height: inputHeight,
-              boxSizing: 'border-box',
-              zIndex: 1,
-              fontSize: '16px',
-              spellCheck: 'false',
-            }}
+            className={`border border-gray-300 overflow-auto
+              bg-white
+              min-h-[100px] mt-2 whitespace-pre-wrap break-words relative w-full box-border z-0 text-base spell-check-none
+            `}
+            style={{ height: inputHeight }} 
           >
             {formatText(currText)}
           </div>

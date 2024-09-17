@@ -10,19 +10,19 @@ export const LLMNode = ({ id }) => {
       type: 'target',
       position: Position.Left,
       id: `${id}-system`,
-      style: { top: '33%' }, // Positioned at 33% from the top
+      style: { top: '33%' },
     },
     {
       type: 'target',
       position: Position.Left,
       id: `${id}-prompt`,
-      style: { top: '66%' }, // Positioned at 66% from the top
+      style: { top: '66%' },
     },
     {
       type: 'source',
       position: Position.Right,
       id: `${id}-response`,
-      style: { top: '50%' }, // Centered on the right
+      style: { top: '50%' }, 
     },
   ];
 

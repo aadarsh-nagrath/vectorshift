@@ -25,6 +25,8 @@ const BaseNode = ({ id, type, handles, additionalContent }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+
+        
         {handles.map((handle, index) => (
           <Handle
             key={index}

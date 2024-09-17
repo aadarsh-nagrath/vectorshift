@@ -13,6 +13,7 @@ const Handles = ({
       <Handle
         type="target"
         position={targetPosition}
+        
         id={`${id}-input`}
         style={{
           top: '25%',
@@ -24,10 +25,12 @@ const Handles = ({
       />
     )}
     {hasSource && (
+
       <Handle
         type="source"
         position={sourcePosition}
         id={`${id}-output`}
+
         style={{
           top: '25%',
           width: '15px',

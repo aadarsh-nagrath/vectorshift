@@ -36,22 +36,27 @@ export const LogNode = ({ id, data }) => {
               id={`${id}-loggerName`}
               type="text"
               value={loggerName}
+
               onChange={(e) => setLoggerName(e.target.value)}
               placeholder="Enter logger name"
             />
           </div>
           <div className="flex flex-col space-y-2">
             <Label htmlFor={`${id}-logLevel`}>Log Level:</Label>
+
             <Select 
               value={logLevel} 
               onValueChange={(value) => setLogLevel(value)}
             >
               <SelectTrigger id={`${id}-logLevel`}>
                 <SelectValue placeholder="Select log level" />
+
               </SelectTrigger>
               <SelectContent>
+
                 <SelectItem value="Info">Info</SelectItem>
                 <SelectItem value="Warning">Warning</SelectItem>
+
                 <SelectItem value="Error">Error</SelectItem>
               </SelectContent>
             </Select>
@@ -59,8 +64,10 @@ export const LogNode = ({ id, data }) => {
           <div className="flex flex-col space-y-2">
             <Label htmlFor={`${id}-message`}>Message:</Label>
             <Input
+            
               id={`${id}-message`}
               type="text"
+
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Enter log message"

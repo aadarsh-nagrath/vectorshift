@@ -36,10 +36,13 @@ export const StoreNode = ({ id, data }) => {
             <Label htmlFor={`${id}-storageName`}>Storage Name:</Label>
             <Input
               id={`${id}-storageName`}
+
               type="text"
               value={storageName}
+
               onChange={(e) => setStorageName(e.target.value)}
               placeholder="Enter storage name"
+
             />
           </div>
 
@@ -50,10 +53,12 @@ export const StoreNode = ({ id, data }) => {
               onValueChange={(value) => setStorageType(value)}
             >
               <SelectTrigger id={`${id}-storageType`}>
+
                 <SelectValue placeholder="Select storage type" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Database">Database</SelectItem>
+                
                 <SelectItem value="File System">File System</SelectItem>
               </SelectContent>
             </Select>

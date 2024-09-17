@@ -43,8 +43,10 @@ export const InputNode = ({ id, data }) => {
               <SelectTrigger id={`${id}-inputType`}>
                 <SelectValue placeholder="Select input type" />
               </SelectTrigger>
+
               <SelectContent>
                 <SelectItem value="Text">Text</SelectItem>
+
                 <SelectItem value="File">File</SelectItem>
               </SelectContent>
             </Select>
