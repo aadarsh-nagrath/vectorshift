@@ -40,13 +40,11 @@ const SubmitButton = () => {
             setNodeData(result);
             setDrawerOpen(true);
 
-            // Trigger toast notification
+
             toast({
                 title: "Pipeline Analysis",
                 description: `Nodes: ${result.num_nodes}, Edges: ${result.num_edges}, Is DAG: ${result.is_dag ? "Yes" : "No"}`,
             });
-
-            // Show alert with data
             alert(`Pipeline Analysis:\nNodes: ${result.num_nodes}\nEdges: ${result.num_edges}\nIs DAG: ${result.is_dag ? "Yes" : "No"}`);
 
         } catch (error) {

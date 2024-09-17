@@ -1,4 +1,3 @@
-// /frontend/src/components/ui/toast.jsx
 
 import * as React from "react";
 import { Cross2Icon } from "@radix-ui/react-icons";

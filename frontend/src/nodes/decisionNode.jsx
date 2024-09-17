@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import BaseNode from './BaseNode';
+import { Handle, Position } from 'reactflow';
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+
+export const DecisionNode = ({ id, data }) => {
+  const [decisionName, setDecisionName] = useState(data?.decisionName || 'Decision');
+  const [condition, setCondition] = useState(data?.condition || 'Condition A');
+
+  return (
+    <BaseNode
+      id={id}
+      type="Decision"
+      additionalHandles={
+        <>
+          <Handle
+            type="target"
+            position={Position.Left}
+            id={`${id}-input`}
+
+            style={{ top: '25%' }}
+          />
+          <Handle
+            type="source"
+            position={Position.Right}
+
+            id={`${id}-outputTrue`}
+            style={{ top: '25%' }}
+          />
+          <Handle
+            type="source"
+            position={Position.Right}
+            id={`${id}-outputFalse`}
+            style={{ top: '50%' }}
+          />
+          <div className="flex flex-col space-y-4 mt-4">
+
+            <div className="flex flex-col space-y-2">
+              <Label htmlFor={`${id}-decisionName`}>Decision Name:</Label>
+              <Input
+                id={`${id}-decisionName`}
+                type="text"
+                value={decisionName}
+
+                onChange={(e) => setDecisionName(e.target.value)}
+                placeholder="Enter decision name"
+              />
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <Label htmlFor={`${id}-condition`}>Condition:</Label>
+              <Select 
+                value={condition} 
+                onValueChange={(value) => setCondition(value)}
+              >
+
+                <SelectTrigger id={`${id}-condition`}>
+                  <SelectValue placeholder="Select condition" />
+                </SelectTrigger>
+                
+                <SelectContent>
+                  <SelectItem value="Condition A">Condition A</SelectItem>
+                  <SelectItem value="Condition B">Condition B</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </>
+      }
+    />
+  );
+};

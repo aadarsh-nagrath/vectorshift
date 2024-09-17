@@ -9,6 +9,10 @@ import { TextNode } from './nodes/textNode';
 import { ProcessNode } from './nodes/processNode';
 
 import 'reactflow/dist/style.css';
+import { LogNode } from './nodes/logNode';
+import { LoopNode } from './nodes/loopNode';
+import { StoreNode } from './nodes/storeNode';
+import { DecisionNode } from './nodes/decisionNode';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -17,7 +21,11 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
-  process: ProcessNode
+  process: ProcessNode,
+  log: LogNode,
+  loop: LoopNode,
+  store: StoreNode,
+  decision: DecisionNode,
 };
 
 const selector = (state) => ({

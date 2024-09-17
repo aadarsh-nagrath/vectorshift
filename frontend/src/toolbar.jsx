@@ -65,7 +65,7 @@ export const PipelineToolbar = () => {
                     alignItems: 'center'
                 }}
             >
-                {['customInput', 'llm', 'customOutput', 'text', 'process'].map((type, index) => (
+                {['customInput', 'llm', 'customOutput', 'text', 'process','decision','log','store','loop'].map((type, index) => (
                     <Tooltip key={index} content={`Drag and drop to add a ${type} node`}>
                         <Button variant="outline" size="small">
                             <DraggableNode type={type} label={type.charAt(0).toUpperCase() + type.slice(1)} />
