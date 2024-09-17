@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Handle, Position } from 'reactflow';
 
-const BaseNode = ({ id, type, additionalHandles }) => {
+const BaseNode = ({ id, type, handles, additionalContent }) => {
   return (
     <Card
       className="
@@ -24,7 +25,23 @@ const BaseNode = ({ id, type, additionalHandles }) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {additionalHandles}
+        {handles.map((handle, index) => (
+          <Handle
+            key={index}
+            type={handle.type}
+            position={handle.position}
+            id={`${id}-${handle.type}-${index}`}
+            style={{
+              top: handle.style?.top || '25%',
+              width: '15px',
+              height: '15px',
+              backgroundColor: '#7402e2',
+              borderRadius: '50%',
+              ...handle.style,
+            }}
+          />
+        ))}
+        {additionalContent}
       </CardContent>
     </Card>
   );

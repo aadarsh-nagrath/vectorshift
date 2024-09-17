@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import BaseNode from './BaseNode';
+import { Handle, Position } from 'reactflow';
 import { Label } from "@/components/ui/label";
 
 export const TextNode = ({ id, data }) => {
@@ -64,11 +65,28 @@ export const TextNode = ({ id, data }) => {
     }
   };
 
+ 
+  const handles = [
+    {
+      type: 'target',
+      position: Position.Left,
+      id: `${id}-input`,
+      style: { top: '25%' },
+    },
+    {
+      type: 'source',
+      position: Position.Right,
+      id: `${id}-output`,
+      style: { top: '25%' },
+    },
+  ];
+
   return (
     <BaseNode 
       id={id}
       type="Text"
-      additionalHandles={
+      handles={handles}
+      additionalContent={
         <div className="relative flex flex-col space-y-2 mt-4">
           <div className="flex flex-col space-y-1.5">
             <Label htmlFor={`${id}-textArea`}>Text</Label>
