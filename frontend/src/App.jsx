@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { PipelineToolbar } from './toolbar';
 import { PipelineUI } from './ui';
-import { SubmitButton } from './submit';
 import Navigation from './components/created-comp/Navigation';
 import { TooltipProvider } from './components/ui/tooltip'; 
 
@@ -22,7 +21,6 @@ function App() {
             <PipelineToolbar />
         </TooltipProvider>
         <PipelineUI />
-        {/* <SubmitButton /> */}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import { Search} from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import SubmitButton from './submit';
 
 export const PipelineToolbar = () => {
     return (
@@ -49,6 +50,7 @@ export const PipelineToolbar = () => {
                         <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <Input type="search" placeholder="Search..." className="pl-8 pr-4" />
                     </div>
+                    <SubmitButton/>
                 </div>
             </div>
 
