@@ -9,9 +9,9 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Progress } from './components/ui/progress';
+import { toast } from "@/components/ui/toast";
 
 const SubmitButton = () => {
     const { nodes, edges } = useStore((state) => ({
@@ -19,7 +19,7 @@ const SubmitButton = () => {
         edges: state.edges
     }));
 
-    const [nodeData, setnodeData] = useState(null);
+    const [nodeData, setNodeData] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const submitPipeline = async () => {
@@ -37,10 +37,25 @@ const SubmitButton = () => {
             }
 
             const result = await response.json();
-            setnodeData(result);
+            setNodeData(result);
             setDrawerOpen(true);
+
+            // Trigger toast notification
+            toast({
+                title: "Pipeline Analysis",
+                description: `Nodes: ${result.num_nodes}, Edges: ${result.num_edges}, Is DAG: ${result.is_dag ? "Yes" : "No"}`,
+            });
+
+            // Show alert with data
+            alert(`Pipeline Analysis:\nNodes: ${result.num_nodes}\nEdges: ${result.num_edges}\nIs DAG: ${result.is_dag ? "Yes" : "No"}`);
+
         } catch (error) {
             console.error('There was a problem:', error);
+            toast({
+                title: "Error",
+                description: "Failed to submit pipeline.",
+                variant: "destructive"
+            });
         }
     };
 
@@ -56,13 +71,12 @@ const SubmitButton = () => {
                     <div className="mx-auto w-full max-w-md">
 
                         <DrawerHeader>
-
                             <DrawerTitle>Pipeline Analysis</DrawerTitle>
                             <DrawerDescription>
                                 Analysis of the submitted pipeline structure.
                             </DrawerDescription>
-
                         </DrawerHeader>
+
                         <div className="p-4 pb-0">
                             {nodeData ? (
                                 <div className="space-y-4">
@@ -73,29 +87,28 @@ const SubmitButton = () => {
                                         <strong>Number of Nodes:</strong> {nodeData.num_nodes}
                                     </div>
                                     <Progress value={nodeData.num_nodes} max={100} label="Node Progress" />
-                                    
+
                                     <div>
                                         <strong>Number of Edges:</strong> {nodeData.num_edges}
                                     </div>
                                     <Progress value={nodeData.num_edges} max={100} label="Edge Progress" />
-                                    
+
                                     <div>
                                         <strong>Is Directed Acyclic Graph (DAG):</strong> {nodeData.is_dag ? "Yes" : "No"}
                                     </div>
                                     <div>
                                         {nodeData.is_dag ? (
-                                            <p 
-                                            className="text-green-500">The pipeline forms a valid DAG.</p>
+                                            <p className="text-green-500">The pipeline forms a valid DAG.</p>
                                         ) : (
-                                            <p 
-                                            className="text-red-500">The pipeline does not form a DAG.</p>
+                                            <p className="text-red-500">The pipeline does not form a DAG.</p>
                                         )}
                                     </div>
                                 </div>
                             ) : (
-                                <p className="text-center">No data received yet. Please submit a pipeline.</p>
+                                <p className="text-center">No data received yet.</p>
                             )}
                         </div>
+
                         <DrawerFooter>
                             <DrawerClose asChild>
                                 <Button variant="destructive">Close</Button>
