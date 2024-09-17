@@ -1,4 +1,3 @@
-// submit.js
 import { Button } from "@/components/ui/button";
 
 export const SubmitButton = () => {

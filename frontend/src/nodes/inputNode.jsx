@@ -1,47 +1,44 @@
-// inputNode.js
-
+import BaseNode from './BaseNode';
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
 
 export const InputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
   const [inputType, setInputType] = useState(data.inputType || 'Text');
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setInputType(e.target.value);
-  };
-
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Input</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={inputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">File</option>
-          </select>
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-value`}
-      />
-    </div>
+    <BaseNode
+      id={id}
+      type="Input"
+      additionalHandles={
+        <div className="space-y-4">
+          <div className="flex flex-col space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input 
+              id="name" 
+              type="text" 
+              value={currName} 
+              onChange={(e) => setCurrName(e.target.value)} 
+              placeholder="Enter input name" 
+            />
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <Label htmlFor="inputType">Type</Label>
+            <Select value={inputType} onValueChange={(value) => setInputType(value)}>
+              <SelectTrigger id="inputType">
+                <SelectValue placeholder="Select input type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Text">Text</SelectItem>
+                <SelectItem value="File">File</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      }
+    />
   );
-}
+};

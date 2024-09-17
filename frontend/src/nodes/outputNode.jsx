@@ -1,47 +1,48 @@
-// outputNode.js
-
+import BaseNode from './BaseNode';
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
   const [outputType, setOutputType] = useState(data.outputType || 'Text');
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
-
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-      />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
-        </label>
-      </div>
-    </div>
+    <BaseNode 
+      id={id}
+      type="Output"
+      additionalHandles={
+        <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-2">
+            <Label htmlFor={`${id}-name`}>Name:</Label>
+            <Input 
+              id={`${id}-name`} 
+              type="text" 
+              value={currName} 
+              onChange={(e) => setCurrName(e.target.value)} 
+              placeholder="Enter output name" 
+            />
+          </div>
+
+          {/* Type Select */}
+          <div className="flex flex-col space-y-2">
+            <Label htmlFor={`${id}-type`}>Type:</Label>
+            <Select 
+              value={outputType} 
+              onValueChange={(value) => setOutputType(value)}
+            >
+              <SelectTrigger id={`${id}-type`}>
+                <SelectValue placeholder="Select output type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Text">Text</SelectItem>
+                <SelectItem value="Image">Image</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      }
+    />
   );
 }

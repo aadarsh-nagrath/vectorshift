@@ -1,7 +1,3 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
@@ -10,6 +6,7 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import { ProcessNode } from './nodes/processNode';
 
 import 'reactflow/dist/style.css';
 
@@ -20,6 +17,7 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  process: ProcessNode
 };
 
 const selector = (state) => ({
@@ -90,7 +88,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
+        <div ref={reactFlowWrapper} style={{width: '100wv', height: '78vh'}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -106,7 +104,7 @@ export const PipelineUI = () => {
                 connectionLineType='smoothstep'
             >
                 <Background color="#aaa" gap={gridSize} />
-                <Controls />
+                <Controls className="relative z-10" />
                 <MiniMap />
             </ReactFlow>
         </div>
